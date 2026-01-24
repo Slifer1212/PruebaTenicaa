@@ -1,4 +1,3 @@
-// java
 package com.inventory.pruebatecnica.controller;
 
 import com.inventory.pruebatecnica.service.ProductService;
@@ -24,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * - DELETE /product/{id}    : delete a product by id</p>
  */
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/product")
 public class ProductController {
     private final ProductService productService;
 
