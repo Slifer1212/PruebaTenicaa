@@ -1,0 +1,36 @@
+spring:
+  main:
+    web-application-type: none
+    banner-mode: off
+
+  ai:
+    mcp:
+      server:
+        stdio: true
+        annotation-scanner:
+          enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/inventory_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: slifer@Klk2020
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    root: WARN
+    com.example: WARN
+    org.springframework: WARN
+    org.hibernate: WARN
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql: OFF
+    org.springframework.ai: WARN

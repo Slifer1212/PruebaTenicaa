@@ -2,8 +2,10 @@ package com.inventory.pruebatecnica.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
+
 
 /**
  * Domain model representing a product in the inventory.
@@ -16,9 +18,10 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Table(name = "products")
 public class Product {
 
     /** Unique identifier of the product. May be {@code null} before persistence. */

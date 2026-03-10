@@ -7,11 +7,11 @@ import com.inventory.pruebatecnica.service.dto.response.ProductResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 @AllArgsConstructor
@@ -31,14 +31,14 @@ public class ProductTool {
         return productService.findById(id);
     }
 
-    @Tool(description = "list all products")
-    public Page<ProductResponse> findAll(@ToolParam Pageable pageable) {
-        return productService.findAll(pageable);
+    @Tool(description = "List all products")
+    public List<ProductResponse> findAll(@ToolParam(description = "Page number starting from 0") int page, @ToolParam(description = "Page size") int size) {
+        return productService.findAll(PageRequest.of(page, size)).getContent();
     }
 
     @Tool(description = "update product")
     public ProductResponse updateProduct(@ToolParam Long id, @ToolParam String name, @ToolParam BigDecimal price, @ToolParam Integer stock) {
-        UpdateProductRequest request = new UpdateProductRequest( name, price, stock);
+        UpdateProductRequest request = new UpdateProductRequest(name, price, stock);
         return productService.update(id, request);
     }
 

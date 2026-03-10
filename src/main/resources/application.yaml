@@ -2,9 +2,20 @@ spring:
   application:
     name: PruebaTecnica
 
-  ai:
-    mcp:
-      server:
-        protocol: streamable
-        annotation-scanner:
-          enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/inventory_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: slifer@Klk2020
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    root: INFO

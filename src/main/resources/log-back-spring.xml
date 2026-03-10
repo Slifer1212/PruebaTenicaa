@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.err</target>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT_MCP" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.hibernate.SQL" level="OFF"/>
+    <logger name="org.hibernate.type.descriptor.sql" level="OFF"/>
+    <logger name="org.hibernate" level="WARN"/>
+
+    <root level="WARN">
+        <appender-ref ref="STDERR" />
+    </root>
+
+    <springProfile name="claude">
+        <root level="ERROR">
+            <appender-ref ref="STDERR" />
+        </root>
+        <logger name="org.hibernate.SQL" level="OFF" additivity="false"/>
+        <logger name="org.hibernate.type.descriptor.sql" level="OFF" additivity="false"/>
+    </springProfile>
+
+</configuration>
