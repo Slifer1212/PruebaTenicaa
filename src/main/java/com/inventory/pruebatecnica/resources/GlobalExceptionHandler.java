@@ -1,4 +1,4 @@
-package com.inventory.pruebatecnica.controller;
+package com.inventory.pruebatecnica.resources;
 
 import com.inventory.pruebatecnica.domain.exceptions.ProductNotFoundException;
 import org.springframework.http.HttpStatus;

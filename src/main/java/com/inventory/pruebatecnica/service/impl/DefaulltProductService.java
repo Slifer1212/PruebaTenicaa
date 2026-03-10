@@ -7,6 +7,7 @@ import com.inventory.pruebatecnica.service.ProductService;
 import com.inventory.pruebatecnica.service.dto.request.CreateProductRequest;
 import com.inventory.pruebatecnica.service.dto.request.UpdateProductRequest;
 import com.inventory.pruebatecnica.service.dto.response.ProductResponse;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Implementation of {@link ProductService}.
- *
+ * <p>
  * This service handles business logic related to Products
  * and coordinates between the repository and DTO mapping.
  */
 @Service
-@Transactional
-public class ProductServiceImpl implements ProductService {
+@AllArgsConstructor
+public class DefaulltProductService implements ProductService {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaulltProductService.class);
 
     private final ProductRepository productRepository;
 
-    @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     /**
      * Creates a new product.
@@ -41,14 +38,10 @@ public class ProductServiceImpl implements ProductService {
      * @return created product as {@link ProductResponse}
      */
     @Override
+    @Transactional
     public ProductResponse create(CreateProductRequest request) {
-
         Product product = buildProduct(request);
-        Product saved = productRepository.save(product);
-
-        log.info("Product created with id {}", saved.getId());
-
-        return mapToResponse(saved);
+        return mapToResponse(productRepository.save(product));
     }
 
     /**
@@ -58,7 +51,6 @@ public class ProductServiceImpl implements ProductService {
      * @return paginated list of {@link ProductResponse}
      */
     @Override
-    @Transactional(readOnly = true)
     public Page<ProductResponse> findAll(Pageable pageable) {
         return productRepository.findAll(pageable)
                 .map(this::mapToResponse);
@@ -72,7 +64,6 @@ public class ProductServiceImpl implements ProductService {
      * @throws ProductNotFoundException if product does not exist
      */
     @Override
-    @Transactional(readOnly = true)
     public ProductResponse findById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
@@ -83,12 +74,13 @@ public class ProductServiceImpl implements ProductService {
     /**
      * Updates an existing product.
      *
-     * @param id product identifier
+     * @param id      product identifier
      * @param request DTO containing updated product data
      * @return updated product as {@link ProductResponse}
      * @throws ProductNotFoundException if product does not exist
      */
     @Override
+    @Transactional
     public ProductResponse update(Long id, UpdateProductRequest request) {
 
         Product product = productRepository.findById(id)

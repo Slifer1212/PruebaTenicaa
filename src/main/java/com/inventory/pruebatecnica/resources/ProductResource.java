@@ -1,11 +1,11 @@
-package com.inventory.pruebatecnica.controller;
+package com.inventory.pruebatecnica.resources;
 
 import com.inventory.pruebatecnica.service.ProductService;
 import com.inventory.pruebatecnica.service.dto.request.CreateProductRequest;
 import com.inventory.pruebatecnica.service.dto.request.UpdateProductRequest;
 import com.inventory.pruebatecnica.service.dto.response.ProductResponse;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -23,14 +23,11 @@ import org.springframework.web.bind.annotation.*;
  * - DELETE /product/{id}    : delete a product by id</p>
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/product")
-public class ProductController {
-    private final ProductService productService;
+public class ProductResource {
 
-    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    private final ProductService productService;
 
     /**
      * Retrieve a page of products.
@@ -39,7 +36,7 @@ public class ProductController {
      * @return page of {@link ProductResponse} wrapped in 200 OK
      */
     @GetMapping()
-    public ResponseEntity<Page<ProductResponse>> findAll(Pageable pageable){
+    public ResponseEntity<Page<ProductResponse>> findAll(Pageable pageable) {
         // Delegate to service to fetch a paginated list
         return ResponseEntity.ok(productService.findAll(pageable));
     }
@@ -74,7 +71,7 @@ public class ProductController {
     /**
      * Update an existing product.
      *
-     * @param id product identifier to update
+     * @param id      product identifier to update
      * @param request validated update request body
      * @return updated {@link ProductResponse} with HTTP 200 (OK)
      */
@@ -99,4 +96,5 @@ public class ProductController {
         // Perform delete; method returns 204 on success
         productService.delete(id);
     }
+
 }

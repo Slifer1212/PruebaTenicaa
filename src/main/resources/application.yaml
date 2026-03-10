@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: PruebaTecnica
+
+  ai:
+    mcp:
+      server:
+        protocol: streamable
+        annotation-scanner:
+          enabled: true
