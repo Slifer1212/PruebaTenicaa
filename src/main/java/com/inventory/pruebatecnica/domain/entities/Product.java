@@ -1,5 +1,6 @@
 package com.inventory.pruebatecnica.domain.entities;
 
+import com.inventory.pruebatecnica.domain.sterotype.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -22,12 +23,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "products")
-public class Product {
-
-    /** Unique identifier of the product. May be {@code null} before persistence. */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Product extends BaseEntity {
 
     /** Human-readable name of the product. */
     @Column(nullable = false)

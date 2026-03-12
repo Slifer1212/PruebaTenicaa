@@ -1,33 +1,44 @@
 package com.inventory.pruebatecnica.service.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.inventory.pruebatecnica.domain.entities.Product;
+import com.inventory.pruebatecnica.domain.sterotype.BaseResponse;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
 import java.math.BigDecimal;
+import java.util.Optional;
 
-/**
- * DTO used to send Product data back to the client.
- *
- * This response represents the current state of a Product
- * after creation, update, or retrieval operations.
- */
-public record ProductResponse(
+@Getter
+@Setter
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProductResponse extends BaseResponse {
 
-        /**
-         * Unique identifier of the product.
-         */
-        Long id,
+    private Long id;
+    private String name;
+    private BigDecimal price;
+    private int stock;
 
-        /**
-         * Name of the product.
-         */
-        String name,
+    protected ProductResponse(Product product) {
+        super(product);
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.stock = product.getStock();
+    }
 
-        /**
-         * Price of the product.
-         */
-        BigDecimal price,
+    public static ProductResponse of(Product product){
+        return Optional.ofNullable(product).map(ProductResponse::new).orElse(null);
+    }
 
-        /**
-         * Available stock quantity.
-         */
-        int stock
-) {
+
+
 }
