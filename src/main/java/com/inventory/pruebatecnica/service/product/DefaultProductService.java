@@ -19,6 +19,16 @@ public class DefaultProductService extends DefaultBaseService<Product> implement
 
     private final ProductRepository repository;
 
+    /**
+     * Creates a new product in the inventory system based on the provided request data.
+     *
+     * This method builds a Product entity from the CreateProductRequest, validates the input,
+     * and persists it to the database within a transactional context. If the transaction fails,
+     * all changes will be rolled back.
+     *
+     * @param request the CreateProductRequest containing the product information (name, price, and stock)
+     * @return the newly created and persisted Product entity with its generated identifier
+     */
     @Override
     @Transactional
     public Product create(CreateProductRequest request) {
@@ -26,14 +36,18 @@ public class DefaultProductService extends DefaultBaseService<Product> implement
         return super.save(product);
     }
 
-    private Product buildProduct(CreateProductRequest request) {
-        return Product.builder()
-                .name(request.name())
-                .price(request.price())
-                .stock(request.stock())
-                .build();
-    }
-
+    /**
+     * Updates an existing product with the provided information.
+     *
+     * Retrieves the product by ID, updates its name, price, and stock fields
+     * with the values from the request, and persists the changes to the database.
+     * This operation is executed within a transactional context.
+     *
+     * @param id the unique identifier of the product to update
+     * @param request the update request containing the new product data (name, price, and stock)
+     * @return the updated Product entity with persisted changes
+     * @throws jakarta.persistence.EntityNotFoundException if no product exists with the given ID
+     */
     @Override
     @Transactional
     public Product update(Long id, UpdateProductRequest request) {
@@ -42,6 +56,21 @@ public class DefaultProductService extends DefaultBaseService<Product> implement
         product.setPrice(request.price());
         product.setStock(request.stock());
         return super.save(product);
+    }
+
+    /**
+     * Builds a Product entity from the provided CreateProductRequest data transfer object.
+     * Maps the request fields (name, price, stock) to a new Product instance using the builder pattern.
+     *
+     * @param request the CreateProductRequest containing the product information to be mapped
+     * @return a newly constructed Product entity with properties populated from the request
+     */
+    private Product buildProduct(CreateProductRequest request) {
+        return Product.builder()
+                .name(request.name())
+                .price(request.price())
+                .stock(request.stock())
+                .build();
     }
 
 }

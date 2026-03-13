@@ -35,10 +35,8 @@ public class ProductResponse extends BaseResponse {
         this.stock = product.getStock();
     }
 
-    public static ProductResponse of(Product product){
+    public static ProductResponse of(Product product) {
         return Optional.ofNullable(product).map(ProductResponse::new).orElse(null);
     }
-
-
 
 }
