@@ -1,4 +1,4 @@
-package com.inventory.pruebatecnica.service.dto.request;
+package com.inventory.pruebatecnica.domain.dto.request.product;
 
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;

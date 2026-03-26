@@ -1,4 +1,4 @@
-package com.inventory.pruebatecnica.service.dto.request;
+package com.inventory.pruebatecnica.domain.dto.request;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -8,9 +8,6 @@ public record CreateSalesRequest(
 
         @NotNull
         Long customerId,
-
-        @NotNull
-        Long productId,
 
         @NotNull
         @Valid

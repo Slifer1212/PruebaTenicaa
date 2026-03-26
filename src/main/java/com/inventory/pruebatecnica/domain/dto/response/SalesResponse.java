@@ -1,8 +1,8 @@
-package com.inventory.pruebatecnica.service.dto.response;
+package com.inventory.pruebatecnica.domain.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.inventory.pruebatecnica.domain.entities.Customers;
-import com.inventory.pruebatecnica.domain.entities.Sales;
+import com.inventory.pruebatecnica.domain.entities.Customer;
+import com.inventory.pruebatecnica.domain.entities.Sale;
 import com.inventory.pruebatecnica.domain.sterotype.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -26,17 +26,17 @@ public class SalesResponse extends BaseResponse {
 
     private BigDecimal total;
     private LocalDateTime saleDate;
-    private Customers customer;
+    private Customer customer;
 
-    protected SalesResponse(Sales sales) {
-        super(sales);
-        this.total = sales.getTotal();
-        this.saleDate = sales.getSaleDate();
-        this.customer = sales.getCustomer();
+    protected SalesResponse(Sale sale) {
+        super(sale);
+        this.total = sale.getTotal();
+        this.saleDate = sale.getSaleDate();
+        this.customer = sale.getCustomer();
     }
 
-    public static SalesResponse of(Sales sales) {
-        return Optional.ofNullable(sales).map(SalesResponse::new).orElse(null);
+    public static SalesResponse of(Sale sale) {
+        return Optional.ofNullable(sale).map(SalesResponse::new).orElse(null);
     }
 
 }

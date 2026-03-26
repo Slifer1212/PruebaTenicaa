@@ -1,4 +1,4 @@
-package com.inventory.pruebatecnica.service.dto.request;
+package com.inventory.pruebatecnica.domain.dto.request.customer;
 
 import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.Email;

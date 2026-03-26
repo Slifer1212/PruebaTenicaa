@@ -1,8 +1,8 @@
 package com.inventory.pruebatecnica.resources;
 
-import com.inventory.pruebatecnica.service.dto.request.CreateProductRequest;
-import com.inventory.pruebatecnica.service.dto.request.UpdateProductRequest;
-import com.inventory.pruebatecnica.service.dto.response.ProductResponse;
+import com.inventory.pruebatecnica.domain.dto.request.product.CreateProductRequest;
+import com.inventory.pruebatecnica.domain.dto.request.product.UpdateProductRequest;
+import com.inventory.pruebatecnica.domain.dto.response.ProductResponse;
 import com.inventory.pruebatecnica.service.product.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

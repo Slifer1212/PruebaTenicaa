@@ -1,11 +1,11 @@
 package com.inventory.pruebatecnica.service.customer;
 
-import com.inventory.pruebatecnica.domain.entities.Customers;
+import com.inventory.pruebatecnica.domain.entities.Customer;
 import com.inventory.pruebatecnica.domain.sterotype.BaseService;
-import com.inventory.pruebatecnica.service.dto.request.CreateCustomerRequest;
+import com.inventory.pruebatecnica.domain.dto.request.customer.CreateCustomerRequest;
 
-public interface CustomersService extends BaseService<Customers> {
+public interface CustomersService extends BaseService<Customer> {
 
-    Customers create(CreateCustomerRequest request);
+    Customer create(CreateCustomerRequest request);
 
 }

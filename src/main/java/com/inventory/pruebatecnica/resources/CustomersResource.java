@@ -1,9 +1,9 @@
 package com.inventory.pruebatecnica.resources;
 
-import com.inventory.pruebatecnica.domain.entities.Customers;
+import com.inventory.pruebatecnica.domain.entities.Customer;
 import com.inventory.pruebatecnica.service.customer.CustomersService;
-import com.inventory.pruebatecnica.service.dto.request.CreateCustomerRequest;
-import com.inventory.pruebatecnica.service.dto.response.CustomersResponse;
+import com.inventory.pruebatecnica.domain.dto.request.customer.CreateCustomerRequest;
+import com.inventory.pruebatecnica.domain.dto.response.CustomersResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ public class CustomersResource {
     private final CustomersService service;
 
     @PostMapping
-    public Customers create(@Valid @RequestBody CreateCustomerRequest request) {
+    public Customer create(@Valid @RequestBody CreateCustomerRequest request) {
         return service.create(request);
     }
 

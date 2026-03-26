@@ -1,14 +1,11 @@
 package com.inventory.pruebatecnica.service.sales;
 
-import com.inventory.pruebatecnica.domain.entities.Sales;
+import com.inventory.pruebatecnica.domain.entities.Sale;
 import com.inventory.pruebatecnica.domain.sterotype.BaseService;
-import com.inventory.pruebatecnica.service.dto.request.CreateSalesRequest;
+import com.inventory.pruebatecnica.domain.dto.request.CreateSalesRequest;
 
-public interface SalesService extends BaseService<Sales> {
+public interface SalesService extends BaseService<Sale> {
 
-    Sales create(CreateSalesRequest request);
-
-    Sales update(Long id, UpdateSalesRequest request);
-
+    Sale create(CreateSalesRequest request);
 
 }

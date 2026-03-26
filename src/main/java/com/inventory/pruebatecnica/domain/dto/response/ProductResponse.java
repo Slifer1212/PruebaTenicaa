@@ -1,4 +1,4 @@
-package com.inventory.pruebatecnica.service.dto.response;
+package com.inventory.pruebatecnica.domain.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.inventory.pruebatecnica.domain.entities.Product;

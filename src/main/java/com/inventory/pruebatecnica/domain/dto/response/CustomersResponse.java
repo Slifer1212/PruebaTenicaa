@@ -1,7 +1,7 @@
-package com.inventory.pruebatecnica.service.dto.response;
+package com.inventory.pruebatecnica.domain.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.inventory.pruebatecnica.domain.entities.Customers;
+import com.inventory.pruebatecnica.domain.entities.Customer;
 import com.inventory.pruebatecnica.domain.sterotype.BaseResponse;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,16 +27,16 @@ public class CustomersResponse extends BaseResponse {
     private String phone;
     private List<SalesResponse> sales;
 
-    protected CustomersResponse(Customers customers){
-        super(customers);
-        this.name = customers.getName();
-        this.email = customers.getEmail();
-        this.phone = customers.getPhone();
-        this.sales = customers.getSales().stream().map(SalesResponse::of).toList();
+    protected CustomersResponse(Customer customer){
+        super(customer);
+        this.name = customer.getName();
+        this.email = customer.getEmail();
+        this.phone = customer.getPhone();
+        this.sales = customer.getSales().stream().map(SalesResponse::of).toList();
     }
 
-    public static CustomersResponse of(Customers customers){
-        return Optional.ofNullable(customers).map(CustomersResponse::new).orElse(null);
+    public static CustomersResponse of(Customer customer){
+        return Optional.ofNullable(customer).map(CustomersResponse::new).orElse(null);
     }
 
 }
